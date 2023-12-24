@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Home from './pages/Home'
+import Activity from './pages/Activity'
+import Flight from './pages/Flight'
+import Hotel from './pages/Hotel'
+import PersonalizedActivity from './pages/PersonalizedActivity'
+import PersonalizedResume from './pages/PersonalizedResume'
 
-function App() {
+
+export default function App() {
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Home />}/>
+          <Route path="/activity" element={<Activity />}/>
+          <Route path="/activity/flight" element={<Flight />}/>
+          <Route path="/activity/hotel" element={<Hotel />}/>
+          <Route path="/activity/personalized" element={<PersonalizedActivity />}/>
+          <Route path="/activity/personalized/resume" element={<PersonalizedResume />} />
+        </Routes>
+      </BrowserRouter>
+    
+    </div>       
+        
+  )
 }
-
-export default App;

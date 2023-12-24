@@ -1,0 +1,22 @@
+.button-link {
+    text-decoration: none;
+  }
+  
+  .button-link button {
+    padding: 8px 16px;
+    margin-right: 10px;
+    background-color: #0078d4;
+    color: white;
+    border: 1px solid #0078d4;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+  
+  .button-link button:hover {
+    background-color: #104670;
+    border-color: #162531;
+  }
+  

@@ -1,0 +1,54 @@
+/* Estilos para la barra de navegación */
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.title-container h1 {
+  margin: 0;
+}
+
+.title-container a {
+  text-decoration: none;
+  color: white;
+  font-size: 24px;
+}
+
+.navlinks ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex; /* Cambio: Utilizamos flexbox */
+}
+
+.navlinks ul li {
+  margin-left: 20px;
+}
+
+.navlinks ul li:first-child {
+  margin-left: 0; /* Eliminamos el margen izquierdo del primer elemento */
+}
+
+.navlinks ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+}
+
+/* Efecto hover */
+.navlinks ul li a:hover {
+  color: #ddd;
+}
