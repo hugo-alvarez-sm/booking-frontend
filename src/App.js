@@ -1,4 +1,5 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Home from './pages/Home'
 import Activity from './pages/Activity'
 import Flight from './pages/Flight'
@@ -9,7 +10,6 @@ import PersonalizedResume from './pages/PersonalizedResume'
 
 export default function App() {
   
-
   return (
     <div>
       <BrowserRouter>

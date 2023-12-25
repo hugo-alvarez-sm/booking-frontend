@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style/HotelForm.css";
-import PersonalizedResumeBody from "./PersonalizedResumeBody.js";
+
 
 function PersonalizedActivityForm() {
 
   const navigate = useNavigate();
 
   const [mainFields, setMainFields] = useState({
-    nombre: "",
-    precio: "",
-    contrato: ""
+    name: "",
+    price: "",
+    contractedThrough: ""
   });
 
-  const [miscFields, setMiscFields] = useState([{ clave: "", valor: "" }]);
+  const [miscFields, setMiscFields] = useState([{ miscellaneousField: "", miscellaneousValue: "" }]);
 
   const handleMainFieldChange = (event, field) => {
     setMainFields({ ...mainFields, [field]: event.target.value });
@@ -29,18 +29,40 @@ function PersonalizedActivityForm() {
     setMiscFields(updatedFields);
   };
 
-   const handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-
-    // Combinar campos principales con campos misceláneos
+  
+    // Verificar que los campos principales no estén vacíos
+    if (
+      mainFields.name.trim() === "" ||
+      mainFields.price.trim() === "" ||
+      mainFields.contractedThrough.trim() === ""
+    ) {
+      // Mostrar un mensaje de error o realizar alguna acción en caso de campos principales vacíos
+      // Por ejemplo:
+      alert("Por favor, complete todos los campos principales.");
+      return; // Detener el envío del formulario si algún campo principal está vacío
+    }
+  
+    // Verificar que al menos un campo misceláneo tenga datos
+    const miscFieldFilled = miscFields.some(
+      (field) => field.miscellaneousField.trim() !== "" || field.miscellaneousValue.trim() !== ""
+    );
+  
+    if (!miscFieldFilled) {
+      // Mostrar un mensaje de error o realizar alguna acción si ningún campo misceláneo está lleno
+      // Por ejemplo:
+      alert("Agregue al menos un campo misceláneo.");
+      return; // Detener el envío del formulario si ningún campo misceláneo está lleno
+    }
+  
+    // Si todos los campos están completos, combinar campos y redirigir
     const personalizedData = {
       ...mainFields,
-      miscelaneos: miscFields
+      miscelaneos: miscFields,
     };
-
-    // Redirigir a la página de resumen con los datos enviados
+  
     navigate("/activity/personalized/resume", { state: { personalizedData } });
-
   };
 
 
@@ -54,8 +76,8 @@ function PersonalizedActivityForm() {
           className="ms-input"
           id="inputNombre"
           placeholder="Ingrese el nombre"
-          value={mainFields.nombre}
-          onChange={(event) => handleMainFieldChange(event, "nombre")}
+          value={mainFields.name}
+          onChange={(event) => handleMainFieldChange(event, "name")}
         />
       </div>
 
@@ -66,8 +88,8 @@ function PersonalizedActivityForm() {
           className="ms-input"
           id="inputPrecio"
           placeholder="Ingrese el precio"
-          value={mainFields.precio}
-          onChange={(event) => handleMainFieldChange(event, "precio")}
+          value={mainFields.price}
+          onChange={(event) => handleMainFieldChange(event, "price")}
         />
       </div>
 
@@ -78,8 +100,8 @@ function PersonalizedActivityForm() {
           className="ms-input"
           id="inputContrato"
           placeholder="Ingrese detalles de contrato"
-          value={mainFields.contrato}
-          onChange={(event) => handleMainFieldChange(event, "contrato")}
+          value={mainFields.contractedThrough}
+          onChange={(event) => handleMainFieldChange(event, "contractedThrough")}
         />
       </div>
 
@@ -93,8 +115,8 @@ function PersonalizedActivityForm() {
             className="ms-input"
             id={`inputMiscClave${index}`}
             placeholder="Clave"
-            value={field.clave}
-            onChange={(event) => handleMiscFieldChange(index, event, "clave")}
+            value={field.miscellaneousField}
+            onChange={(event) => handleMiscFieldChange(index, event, "miscellaneousField")}
           />
           <label htmlFor={`inputMiscValor${index}`} className="ms-label">Valor Misceláneo</label>
           <input
@@ -102,8 +124,8 @@ function PersonalizedActivityForm() {
             className="ms-input"
             id={`inputMiscValor${index}`}
             placeholder="Valor"
-            value={field.valor}
-            onChange={(event) => handleMiscFieldChange(index, event, "valor")}
+            value={field.miscellaneousValue}
+            onChange={(event) => handleMiscFieldChange(index, event, "miscellaneousValue")}
           />
         </div>
       ))}
