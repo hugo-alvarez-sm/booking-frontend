@@ -20,7 +20,7 @@ function PersonalizedActivityForm() {
   };
 
   const handleAddMiscField = () => {
-    setMiscFields([...miscFields, { clave: "", valor: "" }]);
+    setMiscFields([...miscFields, { miscellaneousField: "", miscellaneousValue: "" }]);
   };
 
   const handleMiscFieldChange = (index, event, field) => {
